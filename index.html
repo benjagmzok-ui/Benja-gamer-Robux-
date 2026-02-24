@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benja Store | Robux Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --main: #00e676; --bg: #f8f9fa; --card: #ffffff; --text: #121212; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        
+        /* Logo Superior */
+        .header { margin: 30px 0; }
+        .header img { width: 180px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1)); }
+
+        .verify-badge { background: #e8f5e9; color: #2e7d32; padding: 10px 20px; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; border: 1px solid #c8e6c9; margin-bottom: 25px; }
+
+        /* Carrito */
+        .cart-btn { position: fixed; top: 20px; right: 20px; background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; z-index: 100; border: 1px solid #eee; }
+        #count { position: absolute; top: -5px; right: -5px; background: var(--main); color: white; font-size: 11px; padding: 4px 8px; border-radius: 50%; font-weight: 900; }
+
+        /* Tarjeta */
+        .card { background: var(--card); border-radius: 45px; padding: 45px 30px; max-width: 380px; margin: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.04); border: 1px solid #efefef; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: var(--main); }
+        
+        .rbx-icon { background: #000; width: 80px; height: 80px; border-radius: 22px; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px auto; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .rbx-icon img { width: 45px; filter: brightness(0) invert(1); }
+
+        .price-tag { font-size: 52px; font-weight: 900; letter-spacing: -2px; margin: 10px 0; }
+        .price-tag span { color: var(--main); font-size: 30px; }
+
+        .features { text-align: left; margin: 30px 0; display: grid; gap: 15px; }
+        .item { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; color: #444; }
+        .item i { color: var(--main); }
+
+        button { background: var(--main); color: white; border: none; padding: 22px; border-radius: 24px; font-weight: 900; width: 100%; font-size: 18px; cursor: pointer; transition: 0.3s; }
+
+        /* Checkout */
+        #checkout { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        .modal { background: white; border-radius: 50px; padding: 40px; width: 90%; max-width: 400px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .method { background: #f8f9fa; padding: 20px; border-radius: 25px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; text-align: left; }
+        .method img { width: 35px; border-radius: 10px; }
+        .wa-btn { background: #12d060; color: white; text-decoration: none; padding: 22px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 25px; font-weight: 900; margin-top: 30px; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="cart-btn" onclick="openCart()">
+        <i class="fas fa-shopping-basket"></i>
+        <div id="count" style="display:none">0</div>
+    </div>
+
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Roblox_Logo_2022.svg">
+    </div>
+
+    <div class="verify-badge">
+        <i class="fas fa-shield-check"></i> VENDEDOR VERIFICADO • SEGURO
+    </div>
+
+    <div class="card">
+        <div class="rbx-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Roblox_Logo_2022.svg">
+        </div>
+        <div class="price-tag">
+          
