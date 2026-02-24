@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benja Store | Robux Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --main: #82d639; --bg: #f4f4f4; --card: #ffffff; --text: #1a1a1a; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; text-align: center; margin: 0; padding: 20px; }
+        
+        /* Logo Superior */
+        .brand-header { margin: 20px 0 30px 0; }
+        .brand-header img { width: 180px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1)); }
+
+        /* Banner Seguridad */
+        .secure-badge { background: #1a1a1a; padding: 12px 25px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: white; margin-bottom: 40px; font-weight: 700; }
+        .secure-badge i { color: var(--main); }
+
+        /* Notificación */
+        #toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--main); color: white; padding: 15px 30px; border-radius: 50px; font-weight: 800; z-index: 20000; display: none; box-shadow: 0 10px 30px rgba(130,214,57,0.4); }
+
+        /* Carrito Pro */
+        .cart-container { position: fixed; top: 20px; right: 20px; z-index: 10001; cursor: pointer; }
+        .cart-icon { background: #1a1a1a; color: white; padding: 15px; border-radius: 18px; font-size: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        #cart-count { position: absolute; top: -5px; right: -5px; background: var(--main); color: white; font-size: 12px; padding: 4px 9px; border-radius: 50%; font-weight: 900; border: 2px solid white; }
+
+        h1 { font-size: 2.5rem; font-weight: 900; margin: 0; color: #111; }
+        .sub { color: #666; margin-bottom: 40px; font-size: 16px; font-weight: 500; }
+
+        /* Card de Producto Estilo Apple/Roblox */
+        .card { background: var(--card); padding: 40px 25px; border-radius: 40px; max-width: 360px; margin: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border: 1px solid #eee; position: relative; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        
+        .rbx-icon { background: #1a1a1a; width: 80px; height: 80px; border-radius: 25px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px auto; }
+        .rbx-icon img { width: 50px; }
+
+        .precio-label { font-size: 14px; font-weight: 900; color: #888; letter-spacing: 2px; text-transform: uppercase; }
+        .precio-main { font-size: 50px; font-weight: 900; color: #111; margin: 5px 0; }
+        .precio-main span { color: var(--main); }
+        .ars { font-size: 28px; color: #444; font-weight: 700; margin-bottom: 25px; }
+
+        .trust-list { text-align: left; margin: 25px 0; display: flex; flex-direction: column; gap: 12px; padding: 0 10px; }
+        .trust-list span { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #555; font-weight: 600; }
+
+        button { background: var(--main); color: white; border: none; padding: 22px; border-radius: 25px; font-weight: 900; cursor: pointer; width: 100%; font-size: 18px; transition: 0.2s; box-shadow: 0 10px 20px rgba(130,214,57,0.3); }
+        button:hover { filter: brightness(1.05); }
+
+        /* Checkout */
+        #pago { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 11000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(15px); }
+        .box { background: white; border-radius: 45px; padding: 40px; border: 1px solid #eee; width: 100%; max-width: 400px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); }
+        .metodo { display: flex; align-items: center; background: #f9f9f9; padding: 20px; border-radius: 25px; margin-bottom: 15px; border: 1px solid #eee; text-align: left; }
+        .metodo img { width: 40px; margin-right: 15px; border-radius: 8px; }
+        .btn-wa { background: #25d366; color: white; text-decoration: none; padding: 22px; display: block; border-radius: 25px; font-weight: 900; margin-top: 30px; font-size: 18px; }
+
+        .stats { margin-top: 50px; color: #888; font-size: 13px; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div id="toast">¡PRODUCTO AÑADIDO!</div>
+
+    <div class="cart-container" onclick="verCarrito()">
+        <div class="cart-icon"><i class="fas fa-shopping-bag"></i></div>
+        <div id="cart-count" style="display:none">0</div>
+    </div>
+
+    <div class="brand-header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Roblox_Logo_2022.svg" alt="Roblox Logo">
+    </div>
+
+    <div class="secure-badge">
+        <i class="fas fa-check-shield"></i> PÁGINA 100% SEGURA Y VERIFICADA
+    </div>
+
+    <h1>Benja Store</h1>
+    <p class="sub">Venta oficial de Robux • Entrega imediata</p>
+
+    <div class="card">
+        <div class="rbx-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Roblox_Logo_2022.svg" style="filter: brightness(0) invert(1);">
+        </div>
+        <div class="precio-label">PACK PREMIUM</div>
+        <div class="precio-main">1.000 <span>R$</span></div>
+        <div class="ars">$7.000 ARS</div>
+        
+        <div class="trust-list">
+            <span><i class="fas fa-circle-check" style="color: var(--main);"></i> Carga directa sin riesgo de baneo</span>
+            <span><i class="fas fa-circle-check" style="color: var(--main);"></i> Compatible con PC, Mobile y Xbox</span>
+            <span><i class="fas fa-bolt" style="color: var(--main);"></i> Entrega en menos de 15 minutos</span>
+        </div>
+
+        <button onclick="sumar('1000 Robux')">COMPRAR AHORA</button>
+    </div>
+
+    <div class="stats">
+        Más de 500 ventas exitosas este mes <br>
+        <span style="color: #ffcc00; font-size: 18px;">★★★★★</span><br>
+        4.9/5 - Calificación de clientes
+    </div>
+
+    <div id="pago">
+        <div class="box">
+            <h2 style="margin-top:0; font-size: 28px;">Finalizar pedido</h2>
+            <p style="color: #777; font-size: 15px; margin-bottom: 30px;">Realizá el pago y enviá el comprobante para recibir tus Robux.</p>
+            
+            <div class="metodo">
+                <img src="https://logotipous.com/wp-content/uploads/2021/11/Mercado-Pago-Logo.png">
+                <div><small style="color:#999; font-weight: 800;">ALIAS MERCADO PAGO</small><br><b style="font-size: 16px;">dupe.benja2026</b></div>
+            </div>
+            
+            <div class="metodo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg">
+                <div><small style="color:#999; font-weight: 800;">PAYPAL</small><br><b style="font-size: 16px;">benjagmzok@gmail.com</b></div>
+            </div>
+
+            <a id="waLink" href="#" class="btn-wa"><i class="fab fa-whatsapp"></i> ENVIAR COMPROBANTE</a>
+            <p onclick="document.getElementById('pago').style.display='none'" style="margin-top:25px; cursor:pointer; color:#999; font-weight: 700; font-size: 14px;">[ VOLVER A LA TIENDA ]</p>
+        </div>
+    </div>
+
+    <script>
+        let items = 0; let lista = [];
+        function sumar(p) {
+            items++; lista.push(p);
+            const count = document.getElementById('cart-count');
+            count.innerText = items;
+            count.style.display = 'block';
+            const t = document.getElementById('toast');
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2000);
+        }
+        function verCarrito() {
+            if(items > 0) {
+                document.getElementById('pago').style.display = 'flex';
+                let msg = "Hola Benja! Acabo de pagar mis Robux. Quiero: " + lista.join(", ");
+                document.getElementById('waLink').href = "https://wa.me/5493364546172?text=" + encodeURIComponent(msg);
+            } else { alert("Seleccioná tus Robux primero"); }
+        }
+    </script>
+</body>
+                       </html>
+                       
