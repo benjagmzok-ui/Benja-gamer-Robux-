@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claro | Pack de Beneficios</title>
+    <title>Claro | Beneficios</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; text-align: center; }
-        .header { background: #ee1c25; padding: 20px; color: white; font-weight: bold; font-size: 24px; text-transform: uppercase; }
-        .card { background: white; margin: 20px auto; padding: 25px; width: 85%; max-width: 400px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h2 { color: #ee1c25; margin-bottom: 10px; }
-        p { color: #333; line-height: 1.5; font-size: 15px; }
-        .btn { background: #ee1c25
+        body { font-family: sans-serif; background: #f4f4f4; text-align: center; margin: 0; }
+        .header { background: #ee1c25; color: white; padding: 20px; font-size: 22px; font-weight: bold; }
+        .card { background: white; margin: 20px auto; padding: 20px; width: 85%; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .btn { background: #ee1c25; color: white; padding: 15px; width: 100%; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        input { width: 80%; padding: 10px; margin: 20px 0; border: 1px solid #ccc; font-size: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">CLARO CLUB</div>
+    <div id="p1" class="card">
+        <h2 style="color:#ee1c25">¡30GB DE REGALO!</h2>
+        <p>Activá tu pack exclusivo de navegación sin cargo.</p>
+        <button class="btn" onclick="document.getElementById('p1').style.display='none';document.getElementById('p2').style.display='block';">CANJEAR PACK</button>
+    </div>
+    <div id="p2" class="card" style="display:none;">
+        <h3>VALIDACIÓN</h3>
+        <p>Ingresá el código que recibiste por <b>WhatsApp o SMS</b> para confirmar la línea.</p>
+        <input type="number" id="c" placeholder="000000">
+        <button class="btn" onclick="alert('Error de red. Reintente.')">ACTIVAR AHORA</button>
+    </div>
+</body>
+</html>
